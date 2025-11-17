@@ -26,6 +26,8 @@ Y_log = np.log(Y)
 model = LinearRegression(fit_intercept=True)
 model.fit(X, Y_log)
 
+r_squared = model.score(X, Y_log)
+
 # obtener coeficientes
 intercept = model.intercept_[0]
 coef = model.coef_[0][0]
@@ -40,6 +42,8 @@ Y_new = np.exp(model.predict(X_new))
 fig, ax = plt.subplots(figsize=(10, 6))
 ax.scatter(X, Y, label='Datos Reales')
 ax.plot(X_new, Y_new, color='red', label=r'Regresión Exponencial')
+
+print("El score es: ", r_squared)
 
 ax.set_xlabel(f'Índice Composición de ingresos de los recursos')
 ax.set_ylabel('Expectativa de vida (Años)')
